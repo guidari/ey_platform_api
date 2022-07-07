@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors());
 const corsOptions = {
-  origin: "http://localhost:3000" || "https://ey-platform.vercel.app/",
+  origin: "https://ey-platform.vercel.app/",
 };
 
 const headers = {
