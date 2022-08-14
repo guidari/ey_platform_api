@@ -6,7 +6,8 @@ const app = express();
 
 app.use(cors());
 const corsOptions = {
-  origin: "https://ey-platform.vercel.app",
+  // origin: "https://ey-platform.vercel.app",
+  origin: process.env.CORS_URL,
 };
 
 const headers = {
@@ -20,6 +21,8 @@ const fetchOptions = {
   method: "GET",
   headers,
 };
+
+console.log("url", process.env.CORS_URL);
 
 const requestEndpoint = "https://www.udemy.com/api-2.0/";
 // https://www.udemy.com/api-2.0/courses/?search=react
@@ -38,6 +41,14 @@ app.get("/search", cors(corsOptions), async (req, res) => {
     requestEndpoint + "courses/?search=" + name,
     fetchOptions
   );
+  const jsonResponse = await response.json();
+  res.json(jsonResponse);
+});
+
+app.get("/mycourses", cors(corsOptions), async (req, res) => {
+  const { id } = req.headers;
+
+  const response = await fetch(requestEndpoint + "courses/" + id, fetchOptions);
   const jsonResponse = await response.json();
   res.json(jsonResponse);
 });
