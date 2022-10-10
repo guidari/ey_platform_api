@@ -1,5 +1,5 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
 import fetch from "node-fetch";
 
 const app = express();
@@ -7,13 +7,13 @@ const app = express();
 app.use(cors());
 const corsOptions = {
   // origin: "https://ey-platform.vercel.app",
-  origin: process.env.CORS_URL,
+  origin: [process.env.CORS_ANALYTICS, process.env.CORS_URL],
 };
 
 const headers = {
   Accept: "application/json, text/plain, */*",
   Authorization:
-    "Basic M3A1TFpudEdacFdsTWlGeWRqbk5lVDFTWW40a0lhakx2Y1NyMUZINTpBTXdMdVFaMWMzN05xTUZVMTJybDVtV2cwNXFsYUhHQzF3YndOZnlHUExIUFV6T1FGSmdLc3pDeW5yOVZGYWRsd01yQ2JiY2pqOU9nb0JBeG1zaHNBdDIxWVpMeEdlWW1LTlFOM3o0SjJDQjVLU05YZTRTR1Fld1RWd29JSXRpTA==",
+    "Basic dktKamlEbHE3NzhWYnhWd0pQMFAxdTY1b05aOEY0bEswTE02S2VLRjpBcFFPMzFhN0F5UTZuTzNJSTJqdzQ1N0ZNb0ZFdWowNktBYk1rQjFYZ1p4eXM3eE85VmRQcmk4UlJTcHQ3Y1VYcTZMOGlGdDNGOU5ZMm9mcThJUDk5NWx0VHc0UFZxQ1R4d2d1NWJES1BZckRqdm40bHd5MGZhMVAwRFk3dUpRNg==",
   "Content-Type": "application/json;charset=utf-8",
 };
 
@@ -30,6 +30,7 @@ const requestEndpoint = "https://www.udemy.com/api-2.0/";
 // This function runs if the http://localhost:5000/getData endpoint
 app.get("/courses", cors(corsOptions), async (req, res) => {
   const response = await fetch(requestEndpoint + "courses", fetchOptions);
+
   const jsonResponse = await response.json();
   res.json(jsonResponse);
 });
@@ -42,6 +43,7 @@ app.get("/search", cors(corsOptions), async (req, res) => {
     fetchOptions
   );
   const jsonResponse = await response.json();
+
   res.json(jsonResponse);
 });
 
