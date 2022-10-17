@@ -7,7 +7,11 @@ const app = express();
 app.use(cors());
 const corsOptions = {
   // origin: "https://ey-platform.vercel.app",
-  origin: [process.env.CORS_ANALYTICS, process.env.CORS_URL],
+  origin: [
+    process.env.CORS_ANALYTICS,
+    process.env.CORS_URL,
+    "https://ey-analytics.vercel.app/",
+  ],
 };
 
 const headers = {
