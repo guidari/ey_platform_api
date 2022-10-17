@@ -10,7 +10,7 @@ const corsOptions = {
   origin: [
     process.env.CORS_ANALYTICS,
     process.env.CORS_URL,
-    "https://ey-analytics.vercel.app/",
+    "https://ey-analytics.vercel.app",
   ],
 };
 
